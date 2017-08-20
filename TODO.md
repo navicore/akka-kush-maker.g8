@@ -16,8 +16,10 @@
   * steal plate
 
 * env
-  * new relic agent
-  * kubernetes yaml
+  * swagger
+  * React Web UI
+  * Prometheus Agent
+  * kubernetes yaml for ACI
   * CQRS w/ CosmosDB
   * Chaos Monkey
 
