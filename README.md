@@ -1,6 +1,13 @@
 [![Build Status](https://travis-ci.org/navicore/akka-kush-maker.g8.svg?branch=master)](https://travis-ci.org/navicore/akka-kush-maker.g8)
 
 A [g8] Template for AKKA Kush Maker
+
+# UNDER CONSTRUCTION - DOES NOT WORK YET
+# UNDER CONSTRUCTION - DOES NOT WORK YET
+# UNDER CONSTRUCTION - DOES NOT WORK YET
+# UNDER CONSTRUCTION - DOES NOT WORK YET
+# UNDER CONSTRUCTION - DOES NOT WORK YET
+# UNDER CONSTRUCTION - DOES NOT WORK YET
 ---
 
 The template creates a working demo of the AKKA actor programming model
