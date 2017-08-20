@@ -9,6 +9,7 @@
   * captain (1 per ship)
   * admiral (1 per fleet)
   * steel object
+
 * entities
   * command
     * create fleet
@@ -16,8 +17,10 @@
   * steal plate
 
 * env
-  * swagger
-  * React Web UI
+  * Swagger
+  * UI
+    *  React SPA
+    *  AAD SSO
   * Prometheus Agent
   * kubernetes yaml for ACI
   * CQRS w/ CosmosDB
