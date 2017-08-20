@@ -1,5 +1,6 @@
 package my.demo.kushmakers
 
+import spray.json._
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
@@ -7,29 +8,44 @@ import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import com.typesafe.scalalogging.LazyLogging
+import my.demo.kushmakers.entities._
+import my.demo.kushmakers.http.HttpSupport
 
-object Main extends LazyLogging with HttpSupport {
+import scala.concurrent.ExecutionContextExecutor
+
+object Main extends LazyLogging with HttpSupport with JsonSupport {
 
   def main(args: Array[String]) {
 
-    implicit val system = ActorSystem("rest-system")
-    implicit val materializer = ActorMaterializer()
-    implicit val executionContext = system.dispatcher
+    implicit val system: ActorSystem = ActorSystem("rest-system")
+    implicit val materializer: ActorMaterializer = ActorMaterializer()
+    implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
     val route =
-      path(urlpath) {
+      pathPrefix(urlpath) {
         logRequest(urlpath) {
           handleErrors {
             cors(corsSettings) {
-              get {
-                logger.debug(s"get $urlpath")
-                complete(HttpEntity(ContentTypes.`application/json`,
-                                    "{\"msg\": \"Say hello to akka-http\"}\n"))
+              path("cmd") {
+                get {
+                  logger.debug(s"get $urlpath")
+                  complete(HttpEntity(ContentTypes.`application/json`,
+                                      "{\"msg\": \"Say hello to akka-http\"}\n"))
+                } ~
+                post {
+                  decodeRequest { entity(as[CommandRequest]) { r =>
+                    val command = Command(cmd = r.cmd)
+                    complete(HttpEntity(ContentTypes.`application/json`, command.toJson.prettyPrint))
+                  }}
+                }
               } ~
-              post {
-                logger.debug(s"post $urlpath")
-                complete(HttpEntity(ContentTypes.`application/json`,
-                                    "{\"msg\": \"Say whoa to akka-http\"}\n"))
+              path("fleet") {
+                post {
+                  decodeRequest { entity(as[FleetRequest]) { r =>
+                    val command = FleetCommand(r.size)
+                    complete(HttpEntity(ContentTypes.`application/json`, command.toJson.prettyPrint))
+                  }}
+                }
               }
             }
           }

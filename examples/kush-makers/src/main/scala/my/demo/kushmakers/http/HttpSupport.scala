@@ -1,4 +1,4 @@
-package my.demo.kushmakers
+package my.demo.kushmakers.http
 
 import java.io.IOException
 

@@ -43,6 +43,9 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
     }
   }
 
-  implicit val command: RootJsonFormat[Command] = jsonFormat3(Command)
+  implicit val commandFormat: RootJsonFormat[Command] = jsonFormat3(Command)
+  implicit val commandRequestFormat: RootJsonFormat[CommandRequest] = jsonFormat1(CommandRequest)
+  implicit val fleetCommandFormat: RootJsonFormat[FleetCommand] = jsonFormat4(FleetCommand)
+  implicit val fleetRequestFormat: RootJsonFormat[FleetRequest] = jsonFormat1(FleetRequest)
 }
 
