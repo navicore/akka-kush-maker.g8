@@ -14,3 +14,10 @@
     * create fleet
     * make kush (target admiral, captain, kush maker)
   * steal plate
+
+* env
+  * new relic agent
+  * kubernetes yaml
+  * CQRS w/ CosmosDB
+  * Chaos Monkey
+
