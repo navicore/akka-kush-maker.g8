@@ -1,0 +1,10 @@
+http://localhost:8080
+-ks
+Origin: http://localhost:8080
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-Requested-With
+Authorization : jwt somejwtstuff
+Content-Type: application/json; charset=utf-8
+
+OPTIONS /api
+
