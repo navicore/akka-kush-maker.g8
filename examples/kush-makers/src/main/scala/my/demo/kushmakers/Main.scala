@@ -1,6 +1,5 @@
 package my.demo.kushmakers
 
-import spray.json._
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
@@ -8,8 +7,10 @@ import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import com.typesafe.scalalogging.LazyLogging
+import my.demo.kushmakers.actors.Fleet
 import my.demo.kushmakers.entities._
 import my.demo.kushmakers.http.HttpSupport
+import spray.json._
 
 import scala.concurrent.ExecutionContextExecutor
 
@@ -42,7 +43,9 @@ object Main extends LazyLogging with HttpSupport with JsonSupport {
               path("fleet") {
                 post {
                   decodeRequest { entity(as[FleetRequest]) { r =>
-                    val command = FleetCommand(r.size)
+                    val command = FleetCommand(r.size, r.name)
+                    val fleet= system.actorOf( Fleet.props(command), name = command.name)
+                    fleet ! "launch"
                     complete(HttpEntity(ContentTypes.`application/json`, command.toJson.prettyPrint))
                   }}
                 }

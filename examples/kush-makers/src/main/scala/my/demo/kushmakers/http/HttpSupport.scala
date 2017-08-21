@@ -36,13 +36,17 @@ trait HttpSupport extends LazyLogging {
   val handleErrors
     : Directive[Unit] = handleRejections(rejectionHandler) & handleExceptions(
     ExceptionHandler {
+      case e: akka.actor.InvalidActorNameException =>
+        logger.warn(s"$e")
+        complete(StatusCodes.BadRequest -> e.getMessage)
       case e: NoSuchElementException =>
+        logger.warn(s"$e")
         complete(StatusCodes.NotFound -> e.getMessage)
       case e: IllegalArgumentException =>
-        logger.warn(s"IllegalArgument $e")
+        logger.warn(s"$e")
         complete(StatusCodes.BadRequest -> e.getMessage)
       case e: IOException =>
-        logger.warn(s"IOException $e")
+        logger.warn(s"$e")
         complete(StatusCodes.Forbidden -> e.getMessage)
     }
   )
