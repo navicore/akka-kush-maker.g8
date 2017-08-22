@@ -1,0 +1,37 @@
+@startuml
+
+skinparam backgroundColor #EEEBDC
+
+skinparam sequence {
+	ParticipantBorderColor DeepSkyBlue
+	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontName Impact
+	ParticipantFontSize 17
+	ParticipantFontColor #A9DCDF
+}
+
+actor User
+entity Fleet 
+entity Admiral
+entity Shipyard
+box "Ship"
+entity Captain
+entity KushMaker as "Kush Maker"
+entity hold
+entity crane
+participant water
+end box
+
+User --> Fleet : create fleet
+User <-- Fleet : admiral id
+User --> Admiral : create n ships
+Admiral --> Shipyard : create ship
+Shipyard --> Fleet : here is your ship
+
+User --> Admiral : make kush
+Admiral--> Captain : make kush
+Captain--> KushMaker : make kush
+KushMaker--> hold : make kush
+hold--> crane : make kush
+crane -[#0000FF]-> water : KUSH!!!
+@enduml
