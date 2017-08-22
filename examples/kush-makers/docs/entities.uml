@@ -1,0 +1,62 @@
+@startuml
+
+!define Actor(name, desc) class name as "desc" << (A,#FFAAAA) >>
+!define eid(x) <u>x</u>
+!define ename(x) x
+!define esize(x) x
+
+Actor(fleet, "Fleet") {
+  eid(id) UUID
+  ename(name) STRING
+  esize(size) INT
+}
+
+Actor(shipyard, "Shipyard") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+Actor(captain, "Captain") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+Actor(admiral, "Admiral") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+Actor(kushMaker, "Kush Maker") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+Actor(ship, "Ship") {
+  eid(id) UUID
+  ename(name) STRING
+  eid(captain) CAPTAIN ID
+  eid(holds) STORAGE HOLD IDs
+  eid(cranes) CRANES IDs
+  eid(kushMakers) KUSH MAKER IDs
+}
+
+Actor(crane, "Crane") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+Actor(hold, "Storage Hold") {
+  eid(id) UUID
+  ename(name) STRING
+}
+
+admiral --> shipyard : ask for ship
+shipyard --> ship : build ship
+shipyard --> fleet : deliver ship
+ship +-- captain
+ship +-- kushMaker
+ship +-- crane
+ship +-- hold
+fleet +-- admiral
+
+@enduml
