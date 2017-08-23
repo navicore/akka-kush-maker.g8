@@ -1,6 +1,7 @@
 package my.demo.kushmakers.actors
 
 import akka.actor.{Actor, Props}
+import akka.event.LoggingReceive
 import my.demo.kushmakers.entities.FleetCommand
 
 object Fleet {
@@ -9,7 +10,7 @@ object Fleet {
 
 class Fleet(command: FleetCommand) extends Actor {
 
-  override def receive: PartialFunction[Any, Unit] = {
+  override def receive: PartialFunction[Any, Unit] = LoggingReceive {
     case "launch" => println("launching!")
     case _       => println("huh?")
   }

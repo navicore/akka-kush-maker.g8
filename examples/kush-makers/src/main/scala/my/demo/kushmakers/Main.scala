@@ -7,7 +7,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import ch.megard.akka.http.cors.scaladsl.CorsDirectives._
 import com.typesafe.scalalogging.LazyLogging
-import my.demo.kushmakers.actors.Fleet
+import my.demo.kushmakers.actors.{Fleet, KmSupervisor}
 import my.demo.kushmakers.entities._
 import my.demo.kushmakers.http.HttpSupport
 import spray.json._
@@ -21,6 +21,8 @@ object Main extends LazyLogging with HttpSupport with JsonSupport {
     implicit val system: ActorSystem = ActorSystem("rest-system")
     implicit val materializer: ActorMaterializer = ActorMaterializer()
     implicit val executionContext: ExecutionContextExecutor = system.dispatcher
+
+    val supervisor = system.actorOf(KmSupervisor.props(), "km-supervisor")
 
     val route =
       pathPrefix(urlpath) {

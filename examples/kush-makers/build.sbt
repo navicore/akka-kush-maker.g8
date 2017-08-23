@@ -21,6 +21,7 @@ libraryDependencies ++=
     "com.typesafe" % "config" % "1.2.1",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
 
+    "com.typesafe.akka" %% "akka-slf4j" % akkaVersion,
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
     "com.typesafe.akka" %% "akka-cluster" % akkaVersion,
