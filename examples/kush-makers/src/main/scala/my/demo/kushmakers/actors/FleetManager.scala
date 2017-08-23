@@ -17,6 +17,7 @@ class FleetManager extends Actor with ActorLogging {
       log.info("launching!")
       val c = FleetCommand(r.size, r.name)
       val fleet = context.actorOf( Fleet.props(c), name = c.name)
+      fleet ! "build"
       fleet ! "launch"
       sender() ! c
     case _       => println("huh?")

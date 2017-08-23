@@ -1,7 +1,16 @@
 short term
 ===
 
-* root create a shipyard
+### one
+* ~~root create a fleet~~
+* fleet creates ships (size)
+* tell fleet make a kush
+* tell fleet make kushes
+
+### two
+* use become to isolate fleet building
+
+### three
 * fleet should create an admiral
 * how to message admiral from REST?
 

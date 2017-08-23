@@ -11,6 +11,7 @@ object Fleet {
 class Fleet(command: FleetCommand) extends Actor with ActorLogging {
 
   override def receive: PartialFunction[Any, Unit] = LoggingReceive {
+    case "build" => log.info("building...")
     case "launch" => log.info("launched!")
     case _       => println("huh?")
   }
