@@ -1,3 +1,13 @@
+short term
+===
+
+* root create a shipyard
+* fleet should create an admiral
+* how to message admiral from REST?
+
+long term
+===
+
 * actors
   * fleet (with n ships)
   * ship
