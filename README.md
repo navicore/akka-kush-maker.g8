@@ -1,3 +1,8 @@
+<!-- ghmig:moved -->
+> **This repository has moved to [https://git.navicore.tech/navicore/akka-kush-maker.g8](https://git.navicore.tech/navicore/akka-kush-maker.g8).**
+>
+> The GitHub copy is archived and no longer maintained.
+
 [![Build Status](https://travis-ci.org/navicore/akka-kush-maker.g8.svg?branch=master)](https://travis-ci.org/navicore/akka-kush-maker.g8)
 
 A [g8] Template for AKKA Kush Maker
@@ -39,4 +44,3 @@ g8 git@github.com:navicore/akka-kush-maker.g8.git --name=YOUR_PROJECT_NAME  --pa
 
 [g8]: http://www.foundweekends.org/giter8/
 [g8 setup]: http://www.foundweekends.org/giter8/setup.html 
-
